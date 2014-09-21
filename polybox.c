@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <math.h>
-//teste de push
 
 float peval(Polynome p , float x){
 

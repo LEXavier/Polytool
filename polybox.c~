@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <math.h>
+#include <math.h>x
 
 float peval(Polynome p , float x){
 
@@ -48,8 +48,37 @@ void printP(Polynome p){
 	else printf("+%.2f\n",p.a0);
 }
 
-float roots(Polynome p){
-	if ((p.grau == 1)||(p.grau == 2)) {
+float calculaDelta(float a , float b , float c){
+	return (b*b -4*a*c);
+}
+
+void roots(Polynome p){
+/*
+	Descrição: Calcula as raízes de um polinômio;
+	Entrada: O polinômio p(x);
+	Saída: A impressão da(s) raíze(s) na saída padrão;
+	Autor: Luiz Eduardo Xavier;
+	Data: 20/09/2014;
+*/
+	float root,root1;
+	float delta;
+	if (p.grau == 1) {
+		if (p.a1 != 0){
+			root = -(p.a0/p.a1);
+			printf(":/> %.2f\n",root);
+		}
+		else puts("Raiz indeterminada");
+		return;
+	}
+	if (p.grau == 2)
+		delta = calculaDelta(p.a2,p.a1,p.a0);
+		if (delta >= 0){
+			root = (sqrt(delta)-p.a1)/(2*p.a2);
+			root1 = -(sqrt(delta)+p.a1)/(2*p.a2);
+			printf(":/> {%.2f,%.2f}\n",root,root1);
+		}
+		else puts("Não possui raízes reais");
+		return;
 	} else 
 		puts("O grau do polinômio deve ser inferior a (1 ou 2)");
 }
