@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <math.h>x
+#include <math.h>
 
 float peval(Polynome p , float x){
 
@@ -29,23 +29,23 @@ void printP(Polynome p){
 	printf("p(x) = ");
 	if (p.a9 != 0) printf("%.2fx^9 ",p.a9);
 	if (p.a8 < 0) printf("%.2fx^8 ",p.a8)
-	else printf("+%.2fx^8 ",p.a8);
+	else if (p.a8!=0) printf("+%.2fx^8 ",p.a8);
 	if (p.a7 < 0) printf("%.2fx^7 ",p.a7)
-	else printf("+%.2fx^7 ",p.a7);
+	else if (p.a7!=0) printf("+%.2fx^7 ",p.a7);
 	if (p.a6 < 0) printf("%.2fx^6 ",p.a6)
-	else printf("+%.2fx^6 ",p.a6);
+	else if (p.a6!=0) printf("+%.2fx^6 ",p.a6);
 	if (p.a5 < 0) printf("%.2fx^5 ",p.a5)
-	else printf("+%.2fx^5 ",p.a5);
+	else if (p.a5!=0) printf("+%.2fx^5 ",p.a5);
 	if (p.a4 < 0) printf("%.2fx^4 ",p.a4)
-	else printf("+%.2fx^4 ",p.a4);
+	else if (p.a4!=0) printf("+%.2fx^4 ",p.a4);
 	if (p.a3 < 0) printf("%.2fx^3 ",p.a3)
-	else printf("+%.2fx^3 ",p.a3);
+	else if (p.a3!=0) printf("+%.2fx^3 ",p.a3);
 	if (p.a2 < 0) printf("%.2fx^2 ",p.a2)
-	else printf("+%.2fx^2 ",p.a2);
+	else if (p.a2!=0) printf("+%.2fx^2 ",p.a2);
 	if (p.a1 < 0) printf("%.2fx ",p.a1)
-	else printf("+%.2fx ",p.a1);
+	else if (p.a1!=0) printf("+%.2fx ",p.a1);
 	if (p.a0 < 0) printf("%.2f\n",p.a0)
-	else printf("+%.2f\n",p.a0);
+	else if (p.a0!=0) printf("+%.2f\n",p.a0);
 }
 
 float calculaDelta(float a , float b , float c){
@@ -127,4 +127,50 @@ void optionMenu(Polynome p){
 			break;
 		}
 	}
+}
+
+Polynome newPoly(){
+	float coef;
+	int grau = 0;
+	Polynome p;
+	printf("Leitura do Polinômio\nCaso queira parar digite um grau negativo\nCaso escreva dois coeficientes o último sobrecreverá o anterior\n");
+	while (grau >= 0){
+		printf("Digite um coeficiente do polinômio\n:~$ ");
+		scanf("%f",&coef);
+		printf("Digite seu grau [max 9]\n:~$ ");
+		scanf("%d",&grau);
+		switch (grau) {
+			case 0:
+				p.a0 = coef;
+			break;
+			case 1:
+				p.a1 = coef;
+			break;
+			case 2:
+				p.a2 = coef;
+			break;
+			case 3:
+				p.a3 = coef;
+			break;
+			case 4:
+				p.a4 = coef;
+			break;
+			case 5:
+				p.a5 = coef;
+			break;
+			case 6:
+				p.a6 = coef;
+			break;
+			case 7:
+				p.a7 = coef;
+			break;
+			case 8:
+				p.a8 = coef;
+			break;
+			case 9:
+				p.a9 = coef;
+			break;
+		}
+	}				
+	return p;
 }
