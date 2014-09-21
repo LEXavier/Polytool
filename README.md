@@ -5,3 +5,15 @@ Arquivos:
 - polybox.h
 - polybox.c
 
+Funções (status):
+
+- main ( );
+- peval (Ok);
+- roots (Ok);
+- diffPoly ( );
+- sumP ( );
+- newPoly ( );
+- modPoly ( );
+- printP (Ok);
+- calculaDelta (Ok);
+- optionMenu (Ok);
