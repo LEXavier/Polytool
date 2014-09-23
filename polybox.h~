@@ -11,12 +11,14 @@ float peval(Polynome p, float x);
 
 float roots(Polynome p);
 
-Polynome pdiff(Polynome p);
+Polynome diffPoly(Polynome p);
 
-Polynome psum(Polynome p, Polynome q);
+Polynome sumP(Polynome p);
 
-Polynome newPolynome(a9,a8,a7,a6,a5,a4,a3,a2,a1,a0);
+Polynome newPoly();
 
-Polynome changePolynome(Polynome p , int g , float c);
+Polynome getNewPoly();
 
-void printp(Polynome p);
+Polynome modPoly(Polynome p);
+
+void printP(Polynome p);

@@ -1,8 +1,17 @@
 #include <stdio.h>
 #include <math.h>
 
-float peval(Polynome p , float x){
+typedef struct {
+/*
+	Descrição: Novo tipo nomeado "Polynome" que será trabalhado com a presente biblioteca;
+	Autor: Luiz Eduardo Xavier
+	Data: 15/09/2014
+*/
+	float a9,a8,a7,a6,a5,a4,a3,a2,a1,a0; //coeficientes do polinômio
+	int grau;
+} Polynome;
 
+float peval(Polynome p , float x){
 /*
 	Descrição: retorna o valor de p(x)
 	Entrada: O polinômio p, e o valor de x;
@@ -12,9 +21,10 @@ float peval(Polynome p , float x){
 */
 
 	//Dicionário de dados
-	float resp
+	float resp;
 	resp = (p.a9)*pow(x,9) + (p.a8)*pow(x,8) + (p.a7)*pow(x,7) + (p.a6)*pow(x,6) + (p.a5)*pow(x,5) + (p.a4)*pow(x,4) + (p.a3)*pow(x,3);
 	resp += (p.a2)*pow(x,2) + (p.a1)*x + (p.a0); 
+	printf("p(%.2f)= %f\n",x,resp);
 	return resp;
 }
 
@@ -49,6 +59,13 @@ void printP(Polynome p){
 }
 
 float calculaDelta(float a , float b , float c){
+/*
+	Descrição: Calcula o delta de uma equação do segundo grau;
+	Entrada: Os coeficientes a, b e c do polinômio;
+	Saída: o delta;
+	Autor: Luiz Eduardo Xavier
+	Data: 15/09/2014
+*/
 	return (b*b -4*a*c);
 }
 
@@ -67,66 +84,18 @@ void roots(Polynome p){
 			root = -(p.a0/p.a1);
 			printf(":/> %.2f\n",root);
 		}
-		else puts("Raiz indeterminada");
+		else puts("Raiz indeterminada\n");
 		return;
 	}
-	if (p.grau == 2)
+	if (p.grau == 2) {
 		delta = calculaDelta(p.a2,p.a1,p.a0);
 		if (delta >= 0){
 			root = (sqrt(delta)-p.a1)/(2*p.a2);
 			root1 = -(sqrt(delta)+p.a1)/(2*p.a2);
 			printf(":/> {%.2f,%.2f}\n",root,root1);
-		}
-		else puts("Não possui raízes reais");
+		} else puts("Não possui raízes reais");
 		return;
-	} else 
-		puts("O grau do polinômio deve ser inferior a (1 ou 2)");
-}
-
-void optionMenu(Polynome p){
-/*
-	Descrição: Menu de opções para trabalhar com um polinômio;
-	Entrada: O polinômio p que será trabalhado;
-	Saída: ---
-	Autor: Luiz Eduardo Xavier;
-	Data: 20/09/2014;
-*/
-	int resp = 0;
-	while (resp != 0){
-		printf("O que deseja fazer agora?\n");
-		printf("(1) Mostrar polinômio;\n");
-		printf("(2) Modificar polinômio;\n");
-		printf("(3) Calcular p(x);\n");
-		printf("(4) Calcular raízes (o grau deve ser menor ou igual a 2);\n");
-		printf("(5) Derivar polinômio;\n");
-		printf("(6) Somar com outro polinômio;\n");
-		printf("(7) Sair\n"); 
-		printf(":/>");
-		scanf("%d",&resp);
-		switch (resp) {
-			case 1:
-				printP(p);
-			break;
-			case 2:
-				modPoly(p);
-			break;
-			case 3:
-				peval(p);
-			break;
-			case 4:
-				roots(p);
-			break;
-			case 5:
-				diff(p);
-			break;
-			case 6:
-				sumP(p);
-			break;
-			default:
-				if (resp != 7) printf("Opção inválida!");
-			break;
-		}
-	}
+	} else 	puts("O grau do polinômio deve ser igual a 1 ou 2\n");
 }
 
 Polynome newPoly(a9,a8,a7,a6,a5,a4,a3,a2,a1,a0){
@@ -235,4 +204,62 @@ Polynome diffPoly(Polynome p){
 	r.a0 = p.a1;
 	printP(r);
 	return r;
+}
+Polynome sumP(Polynome p){
+	printf("Não implementado!\n");
+	return p;
+}
+Polynome modPoly(Polynome p){
+	printf("Não implementado!\n");
+	return p;
+}
+
+
+void optionMenu(Polynome p){
+/*
+	Descrição: Menu de opções para trabalhar com um polinômio;
+	Entrada: O polinômio p que será trabalhado;
+	Saída: ---
+	Autor: Luiz Eduardo Xavier;
+	Data: 20/09/2014;
+*/
+	int resp = 0;
+	float aux;
+	while (resp != 7){
+		printf("\nO que deseja fazer agora?\n");
+		printf("(1) Mostrar polinômio;\n");
+		printf("(2) Modificar polinômio;\n");
+		printf("(3) Calcular p(x);\n");
+		printf("(4) Calcular raízes (o grau deve ser menor ou igual a 2);\n");
+		printf("(5) Derivar polinômio;\n");
+		printf("(6) Somar com outro polinômio;\n");
+		printf("(7) Sair\n"); 
+		printf(":/>");
+		scanf("%d",&resp);
+		switch (resp) {
+			case 1:
+				printP(p);
+			break;
+			case 2:
+				modPoly(p);
+			break;
+			case 3:
+				printf("Digite o valor de x desejado\n:~$ ");
+				scanf("%f",&aux);
+				peval(p,aux);
+			break;
+			case 4:
+				roots(p);
+			break;
+			case 5:
+				diffPoly(p);
+			break;
+			case 6:
+				sumP(p);
+			break;
+			default:
+				if (resp != 7) printf("Opção inválida!\n");
+			break;
+		}
+	}
 }

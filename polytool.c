@@ -3,6 +3,8 @@
 
 int main(void){
 	Polynome polinomio;
-	polinomio = newPoly();
+	polinomio = newPoly(0,0,0,0,0,0,0,0,0,0);
 	optionMenu(polinomio);
+	printf(".");
+	return 0;
 }
