@@ -3,6 +3,7 @@ Autores:
 		 Luiz Eduardo Xavier [DRE: 14471727796] 
 		    	 & 
 		   Rodrigo Paiva
+\\
 Arquivos:
 - polytool.c (Código main)
 - polybox.h (declarações da biblioteca polybox.c)

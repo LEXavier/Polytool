@@ -1,5 +1,8 @@
 Primeiro trabalho de Computação I da Turma 2014.2 - UFRJ
-Autores: Luiz Eduardo Xavier & Rodrigo Paiva
+Autores:  
+		 Luiz Eduardo Xavier [DRE: 14471727796] 
+		    	 & 
+		   Rodrigo Paiva
 Arquivos:
 - polytool.c (Código main)
 - polybox.h (declarações da biblioteca polybox.c)
