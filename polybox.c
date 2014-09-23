@@ -28,24 +28,24 @@ void printP(Polynome p){
 */
 	printf("p(x) = ");
 	if (p.a9 != 0) printf("%.2fx^9 ",p.a9);
-	if (p.a8 < 0) printf("%.2fx^8 ",p.a8)
-	else if (p.a8!=0) printf("+%.2fx^8 ",p.a8);
-	if (p.a7 < 0) printf("%.2fx^7 ",p.a7)
-	else if (p.a7!=0) printf("+%.2fx^7 ",p.a7);
-	if (p.a6 < 0) printf("%.2fx^6 ",p.a6)
-	else if (p.a6!=0) printf("+%.2fx^6 ",p.a6);
-	if (p.a5 < 0) printf("%.2fx^5 ",p.a5)
-	else if (p.a5!=0) printf("+%.2fx^5 ",p.a5);
-	if (p.a4 < 0) printf("%.2fx^4 ",p.a4)
-	else if (p.a4!=0) printf("+%.2fx^4 ",p.a4);
-	if (p.a3 < 0) printf("%.2fx^3 ",p.a3)
-	else if (p.a3!=0) printf("+%.2fx^3 ",p.a3);
-	if (p.a2 < 0) printf("%.2fx^2 ",p.a2)
-	else if (p.a2!=0) printf("+%.2fx^2 ",p.a2);
-	if (p.a1 < 0) printf("%.2fx ",p.a1)
-	else if (p.a1!=0) printf("+%.2fx ",p.a1);
-	if (p.a0 < 0) printf("%.2f\n",p.a0)
-	else if (p.a0!=0) printf("+%.2f\n",p.a0);
+	if (p.a8 < 0) printf("%.2fx^8 ",p.a8);
+	else if (p.a8!=0) printf("+ %.2fx^8 ",p.a8);
+	if (p.a7 < 0) printf("%.2fx^7 ",p.a7);
+	else if (p.a7!=0) printf("+ %.2fx^7 ",p.a7);
+	if (p.a6 < 0) printf("%.2fx^6 ",p.a6);
+	else if (p.a6!=0) printf("+ %.2fx^6 ",p.a6);
+	if (p.a5 < 0) printf("%.2fx^5 ",p.a5);
+	else if (p.a5!=0) printf("+ %.2fx^5 ",p.a5);
+	if (p.a4 < 0) printf("%.2fx^4 ",p.a4);
+	else if (p.a4!=0) printf("+ %.2fx^4 ",p.a4);
+	if (p.a3 < 0) printf("%.2fx^3 ",p.a3);
+	else if (p.a3!=0) printf("+ %.2fx^3 ",p.a3);
+	if (p.a2 < 0) printf("%.2fx^2 ",p.a2);
+	else if (p.a2!=0) printf("+ %.2fx^2 ",p.a2);
+	if (p.a1 < 0) printf("%.2fx ",p.a1);
+	else if (p.a1!=0) printf("+ %.2fx ",p.a1);
+	if (p.a0 < 0) printf("%.2f\n",p.a0);
+	else if (p.a0!=0) printf("+ %.2f\n",p.a0);
 }
 
 float calculaDelta(float a , float b , float c){
@@ -94,7 +94,7 @@ void optionMenu(Polynome p){
 	int resp = 0;
 	while (resp != 0){
 		printf("O que deseja fazer agora?\n");
-		printf("(1) Mostra polinômio;\n");
+		printf("(1) Mostrar polinômio;\n");
 		printf("(2) Modificar polinômio;\n");
 		printf("(3) Calcular p(x);\n");
 		printf("(4) Calcular raízes (o grau deve ser menor ou igual a 2);\n");
@@ -129,7 +129,29 @@ void optionMenu(Polynome p){
 	}
 }
 
-Polynome newPoly(){
+Polynome newPoly(a9,a8,a7,a6,a5,a4,a3,a2,a1,a0){
+/*
+	Descrição: Instancia novo polinômio;
+	Entrada: Os 9 coeficientes do polinomio;
+	Saída: O polinômio desejado pelo usuário;
+	Autor: Luiz Eduardo Xavier;
+	Data: 23/09/2014;
+*/
+	Polynome r;
+	r.a0 = a0;
+	r.a1 = a1;
+	r.a2 = a2;
+	r.a3 = a3;
+	r.a4 = a4;
+	r.a5 = a5;
+	r.a6 = a6;
+	r.a7 = a7;
+	r.a8 = a8;
+	r.a9 = a9;
+	return r;
+}
+
+Polynome getNewPoly(){
 /*
 	Descrição: Realiza a leitura de um polinômio;
 	Entrada: void;
@@ -139,6 +161,16 @@ Polynome newPoly(){
 */
 	float coef;
 	int grau = 0;
+	float 	a0 = 0,
+		a1 = 0,
+		a2 = 0,
+		a3 = 0,
+		a4 = 0,
+		a5 = 0,
+		a6 = 0,
+		a7 = 0,
+		a8 = 0,
+		a9 = 0;
 	Polynome p;
 	printf("Leitura do Polinômio\nCaso queira parar digite um grau negativo\nCaso escreva dois coeficientes o último sobrecreverá o anterior\n");
 	while (grau >= 0){
@@ -148,36 +180,59 @@ Polynome newPoly(){
 		scanf("%d",&grau);
 		switch (grau) {
 			case 0:
-				p.a0 = coef;
+				a0 = coef;
 			break;
 			case 1:
-				p.a1 = coef;
+				a1 = coef;
 			break;
 			case 2:
-				p.a2 = coef;
+				a2 = coef;
 			break;
 			case 3:
-				p.a3 = coef;
+				a3 = coef;
 			break;
 			case 4:
-				p.a4 = coef;
+				a4 = coef;
 			break;
 			case 5:
-				p.a5 = coef;
+				a5 = coef;
 			break;
 			case 6:
-				p.a6 = coef;
+				a6 = coef;
 			break;
 			case 7:
-				p.a7 = coef;
+				a7 = coef;
 			break;
 			case 8:
-				p.a8 = coef;
+				a8 = coef;
 			break;
 			case 9:
-				p.a9 = coef;
+				a9 = coef;
 			break;
 		}
-	}				
+	}
+	p = newPoly(a9,a8,a7,a6,a5,a4,a3,a2,a1,a0);
 	return p;
+}
+Polynome diffPoly(Polynome p){
+	/*
+	Descrição: Deriva um polinômio e printa na tela;
+	Entrada: Um polinômio;
+	Saída: A derivada do polinômio;
+	Autor: Luiz Eduardo Xavier;
+	Data: 23/09/2014;
+*/
+	Polynome r;
+	r.a9 = 0;
+	r.a8 = 9*(p.a9);
+	r.a7 = 8*(p.a8);
+	r.a6 = 7*(p.a7);
+	r.a5 = 6*(p.a6);
+	r.a4 = 5*(p.a7);
+	r.a3 = 4*(p.a4);
+	r.a2 = 3*(p.a3);
+	r.a1 = 2*(p.a2);
+	r.a0 = p.a1;
+	printP(r);
+	return r;
 }
