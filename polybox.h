@@ -23,6 +23,8 @@ Polynome sumP(Polynome p);
 
 Polynome newPoly();
 
+Polynome getNewPoly();
+
 Polynome modPoly(Polynome p);
 
 void printP(Polynome p);
