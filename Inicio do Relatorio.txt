@@ -1,0 +1,23 @@
+Rodrigo Paiva [DRE:114156432] e Luiz Eduardo Xavier [DRE: 14471727796]
+				
+				Trabalho de Computação 1
+
+	O trabalho basicamente ficou resumido em criar um programa em C que o usuário fornecesse 
+valores de um polinômio e pudesse escolher, entre as opções fornecida pelo programa:(1) Mostrar
+polinômio, (2) Modificar polinômio, (3) Calcular p(x), (4) Calcular raízes (o grau deve ser 
+menor ou igual a 2), (5) Derivar polinômio, (6) Somar com outro polinômio e (7) Sair; devolvendo
+todas as opções escolhidas uma de cada vez.
+	O pensamento mais básico para iniciar a construção do programa fora: dividir o programa
+em três arquivos. E logo em seguida analisar como o programa leria a entrada do polinômio, portanto
+pensamos em dividir essa entrada em duas partes:"Digite um coeficiente do polinômio"/"Digite seu grau 
+[max 9]"; concluindo que fosse fornecido o grau maximo e faria essa repetição até o grau igual a zero,
+ou seja, reconhecendo um a um os termos do polinômio.
+	Os testes realizados foram eficazes e certeiros, escolhemos polinômios em que sabíamos 
+o valor que precisaria devolver em cada opção e foi o mesmo. 
+	As dificuldades encontradas foram como dividir o trabalho em partes em que cada um pudesse
+fazer e respeitar a lógica da dupla. Fora fácil deduzir que cada um pode pensar em uma lógica diferente,
+mais complicada ou simples, entretanto havendo um consenso entre ambas as partes. Na construção 
+do programa em geral, um membro da dupla que já programava à mais tempo, não achou tanta da dificuldade 
+e assim foi possível que houve o aparo das aresta em algumas funções e erros encontrados. Houve dificuldade
+em iniciar o programa com a interação do usuário e pegar os termos do polinômio e quando descoberto
+uma maneira de começar, as outras partes foram se encaixando. 
