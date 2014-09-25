@@ -54,14 +54,14 @@ void printP(Polynome p){
 	Data: 15/09/2014
 */
 	printf("p(x) = ");
-	if ((p.a9 > 0)||(p.a9 < 0)) {
+	if (p.a9 + 1 != 1) {
 		printf("%.2fx^9 ",p.a9);
-	}
+	} 
 	if (p.a8 < 0) { 
 		printf("%.2fx^8 ",p.a8);
 	}
-	else if (p.a8 > 0) {
-		printf("+ %.2fx^8 ",p.a8);
+	else if (p.a8 + 1 != 1) {
+	printf("+ %.2fx^8 ",p.a8);
 	}
 	if (p.a7 < 0) {
 		printf("%.2fx^7 ",p.a7);
@@ -170,7 +170,6 @@ Polynome newPoly(float a9,float a8,float a7,float a6,float a5,float a4,float a3,
 	r.a7 = a7;
 	r.a8 = a8;
 	r.a9 = a9;
-	printf("%.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f",a9,a8,a7,a6,a5,a4,a3,a2,a1,a0);
 	return r;
 }
 
@@ -240,21 +239,22 @@ Polynome diffPoly(Polynome p){
 	/*
 	Descrição: Deriva um polinômio e printa na tela;
 	Entrada: Um polinômio;
-	Saída: A derivada do polinômio;
+	Saída: A derivada do polinômio, e sua impressão em tela;
 	Data: 23/09/2014;
 */
-	Polynome r;
-	r.a9 = 0;
-	r.a8 = 9*(p.a9);
-	r.a7 = 8*(p.a8);
-	r.a6 = 7*(p.a7);
-	r.a5 = 6*(p.a6);
-	r.a4 = 5*(p.a7);
-	r.a3 = 4*(p.a4);
-	r.a2 = 3*(p.a3);
-	r.a1 = 2*(p.a2);
-	r.a0 = p.a1;
-	return r;
+	Polynome diff;
+	diff.a9 = 0;
+	diff.a8 = 9*(p.a9);
+	diff.a7 = 8*(p.a8);
+	diff.a6 = 7*(p.a7);
+	diff.a5 = 6*(p.a6);
+	diff.a4 = 5*(p.a7);
+	diff.a3 = 4*(p.a4);
+	diff.a2 = 3*(p.a3);
+	diff.a1 = 2*(p.a2);
+	diff.a0 = p.a1;
+	printP(diff);
+	return diff;
 }
 Polynome sumP(Polynome p){
 	printf("Entre com o polinômio a ser somado com o original\n");
@@ -263,11 +263,71 @@ Polynome sumP(Polynome p){
 	printP(q);
 	return q;
 }
-Polynome modPoly(Polynome p){
-	printf("Não implementado!\n");
+Polynome subsPoly(Polynome p){
+	char resp;
+	puts("Entre com o polinômio que SUBSTITUIRÁ o antigo polinômio");
+	printf("Deseja continuar? (y/n)\n:/>");
+	scanf("%c",&resp);
+	switch (resp){
+		case 'y':
+			p = getNewPoly();
+		break;
+		default:
+			puts("Opção inválida!");
+		case 'n':
+			puts("Modificação abortada!");
+		break;
+	}
 	return p;
 }
-
+Polynome modPoly(Polynome p){
+	int grau;
+	float coef;
+	while (grau >= 0){
+		printf("Digite o grau do coeficiente  ser mudado\n:/>");
+		scanf("%d",&grau);
+		if (grau >= 0) {
+			printf("Digite o novo coeficiente\n:/>");
+			scanf("%f",&coef);
+			switch (grau){
+				case 0:
+					p.a0 = coef;
+				break;
+				case 1:
+					p.a1 = coef;
+				break;
+				case 2:
+					p.a2 = coef;
+				break;
+				case 3:
+					p.a3 = coef;
+				break;
+				case 4:
+					p.a4 = coef;
+				break;
+				case 5:
+					p.a5 = coef;
+				break;
+				case 6:
+					p.a6 = coef;
+				break;
+				case 7:
+					p.a7 = coef;
+				break;
+				case 8:
+					p.a8 = coef;
+				break;
+				case 9:
+					p.a9 = coef;
+				break;
+				default:
+					printf("O grau deve ser menor ou igual a 9!\n");
+				break;
+			}
+		}
+	}
+	return p;
+} 
 
 void optionMenu(Polynome p){
 /*
@@ -276,17 +336,18 @@ void optionMenu(Polynome p){
 	Saída: ---
 	Data: 20/09/2014;
 */
-	int resp = 0;
+	int resp = 10;
 	float aux;
-	while (resp != 7){
+	while (resp != 0){
 		printf("\nO que deseja fazer agora?\n");
 		printf("(1) Mostrar polinômio;\n");
 		printf("(2) Modificar polinômio;\n");
-		printf("(3) Calcular p(x);\n");
-		printf("(4) Calcular raízes (o grau deve ser menor ou igual a 2);\n");
-		printf("(5) Derivar polinômio;\n");
-		printf("(6) Somar com outro polinômio;\n");
-		printf("(7) Sair\n"); 
+		printf("(3) Trocar polinômio\n");
+		printf("(4) Calcular p(x);\n");
+		printf("(5) Calcular raízes (o grau deve ser menor ou igual a 2);\n");
+		printf("(6) Derivar polinômio;\n");
+		printf("(7) Somar com outro polinômio;\n");
+		printf("(0) Sair\n"); 
 		printf(":/>");
 		scanf("%d",&resp);
 		switch (resp) {
@@ -294,24 +355,27 @@ void optionMenu(Polynome p){
 				printP(p);
 			break;
 			case 2:
-				modPoly(p);
+				p = modPoly(p);
 			break;
 			case 3:
+				p = subsPoly(p);
+			break;
+			case 4:
 				printf("Digite o valor de x desejado\n:~$ ");
 				scanf("%f",&aux);
 				peval(p,aux);
 			break;
-			case 4:
+			case 5:
 				roots(p);
 			break;
-			case 5:
+			case 6:
 				diffPoly(p);
 			break;
-			case 6:
+			case 7:
 				sumP(p);
 			break;
 			default:
-				if (resp != 7) printf("Opção inválida!\n");
+				if (resp != 0) printf("Opção inválida!\n");
 			break;
 		}
 	}
