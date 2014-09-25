@@ -1,7 +1,7 @@
 >>> Primeiro trabalho de Computação I da Turma 2014.2 - UFRJ
 
 * Autores:  
-- Luiz Eduardo Xavier [DRE: 14471727796]; 
+- Luiz Eduardo Xavier [DRE: 114159715]; 
 - Rodrigo Paiva [DRE: ??????????];
 
 
