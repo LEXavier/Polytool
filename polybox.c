@@ -4,19 +4,37 @@
 typedef struct {
 /*
 	Descrição: Novo tipo nomeado "Polynome" que será trabalhado com a presente biblioteca;
-	Autor: Luiz Eduardo Xavier
 	Data: 15/09/2014
 */
 	float a9,a8,a7,a6,a5,a4,a3,a2,a1,a0; //coeficientes do polinômio
 	int grau;
 } Polynome;
 
+Polynome somaPoly(Polynome p, Polynome p2){
+/*
+	Descrição: retonar a soma dos polinômios;
+	Entrada: O polinômio p e p2 ;
+	Saída: soma dos polinômio;
+	Data: 24/09/2014
+*/
+		Polynome pCalc;
+		pCalc.a0 = p.a0 + p2.a0;
+		pCalc.a1 = p.a1 + p2.a1;
+		pCalc.a2 = p.a2 + p2.a2;
+		pCalc.a3 = p.a3 + p2.a3;
+		pCalc.a4 = p.a4 + p2.a4;
+		pCalc.a5 = p.a5 + p2.a5;
+		pCalc.a6 = p.a6 + p2.a6;
+		pCalc.a7 = p.a7 + p2.a7;
+		pCalc.a8 = p.a8 + p2.a8;
+		pCalc.a9 = p.a9 + p2.a9;
+		return pCalc;
+}
 float peval(Polynome p , float x){
 /*
 	Descrição: retorna o valor de p(x)
 	Entrada: O polinômio p, e o valor de x;
 	Saída: p(x);
-	Autor: Luiz Eduardo Xavier
 	Data: 15/09/2014
 */
 
@@ -33,29 +51,66 @@ void printP(Polynome p){
 	Descrição: imprime p(x) na saída padrão;
 	Entrada: O polinômio p;
 	Saída: a impressão de p(x);
-	Autor: Luiz Eduardo Xavier
 	Data: 15/09/2014
 */
 	printf("p(x) = ");
-	if (p.a9 != 0) printf("%.2fx^9 ",p.a9);
-	if (p.a8 < 0) printf("%.2fx^8 ",p.a8);
-	else if (p.a8!=0) printf("+ %.2fx^8 ",p.a8);
-	if (p.a7 < 0) printf("%.2fx^7 ",p.a7);
-	else if (p.a7!=0) printf("+ %.2fx^7 ",p.a7);
-	if (p.a6 < 0) printf("%.2fx^6 ",p.a6);
-	else if (p.a6!=0) printf("+ %.2fx^6 ",p.a6);
-	if (p.a5 < 0) printf("%.2fx^5 ",p.a5);
-	else if (p.a5!=0) printf("+ %.2fx^5 ",p.a5);
-	if (p.a4 < 0) printf("%.2fx^4 ",p.a4);
-	else if (p.a4!=0) printf("+ %.2fx^4 ",p.a4);
-	if (p.a3 < 0) printf("%.2fx^3 ",p.a3);
-	else if (p.a3!=0) printf("+ %.2fx^3 ",p.a3);
-	if (p.a2 < 0) printf("%.2fx^2 ",p.a2);
-	else if (p.a2!=0) printf("+ %.2fx^2 ",p.a2);
-	if (p.a1 < 0) printf("%.2fx ",p.a1);
-	else if (p.a1!=0) printf("+ %.2fx ",p.a1);
-	if (p.a0 < 0) printf("%.2f\n",p.a0);
-	else if (p.a0!=0) printf("+ %.2f\n",p.a0);
+	if ((p.a9 > 0)||(p.a9 < 0)) {
+		printf("%.2fx^9 ",p.a9);
+	}
+	if (p.a8 < 0) { 
+		printf("%.2fx^8 ",p.a8);
+	}
+	else if (p.a8 > 0) {
+		printf("+ %.2fx^8 ",p.a8);
+	}
+	if (p.a7 < 0) {
+		printf("%.2fx^7 ",p.a7);
+	}
+	else if (p.a7!=0.0) {
+		printf("+ %.2fx^7 ",p.a7);
+	}
+	if (p.a6 < 0) {
+		printf("%.2fx^6 ",p.a6);
+	}
+	else if (p.a6!=0.0) {
+		printf("+ %.2fx^6 ",p.a6);
+	}
+	if (p.a5 < 0) {
+		printf("%.2fx^5 ",p.a5);
+	}
+	else if (p.a5!=0.0) {
+		printf("+ %.2fx^5 ",p.a5);
+	}
+	if (p.a4 < 0) {
+		printf("%.2fx^4 ",p.a4);
+	}
+	else if (p.a4!=0.0) {
+		printf("+ %.2fx^4 ",p.a4);
+	}
+	if (p.a3 < 0) {
+		printf("%.2fx^3 ",p.a3);
+	}
+	else if (p.a3!=0.0) {
+		printf("+ %.2fx^3 ",p.a3);
+	}
+	if (p.a2 < 0) {
+		printf("%.2fx^2 ",p.a2);
+	}
+	else if (p.a2!=0.0) {
+		printf("+ %.2fx^2 ",p.a2);
+	}
+	if (p.a1 < 0) {
+		printf("%.2fx ",p.a1);
+	}
+	else if (p.a1!=0.0) {
+		printf("+ %.2fx ",p.a1);
+	}
+	if (p.a0 < 0) {
+		printf("%.2f\n",p.a0);
+	}
+	else if (p.a0!=0.0) {
+		printf("+ %.2f\n",p.a0);
+	}
 }
 
 float calculaDelta(float a , float b , float c){
@@ -63,7 +118,6 @@ float calculaDelta(float a , float b , float c){
 	Descrição: Calcula o delta de uma equação do segundo grau;
 	Entrada: Os coeficientes a, b e c do polinômio;
 	Saída: o delta;
-	Autor: Luiz Eduardo Xavier
 	Data: 15/09/2014
 */
 	return (b*b -4*a*c);
@@ -74,7 +128,7 @@ void roots(Polynome p){
 	Descrição: Calcula as raízes de um polinômio;
 	Entrada: O polinômio p(x);
 	Saída: A impressão da(s) raíze(s) na saída padrão;
-	Autor: Luiz Eduardo Xavier;
+	;
 	Data: 20/09/2014;
 */
 	float root,root1;
@@ -98,12 +152,11 @@ void roots(Polynome p){
 	} else 	puts("O grau do polinômio deve ser igual a 1 ou 2\n");
 }
 
-Polynome newPoly(a9,a8,a7,a6,a5,a4,a3,a2,a1,a0){
+Polynome newPoly(float a9,float a8,float a7,float a6,float a5,float a4,float a3,float a2,float a1,float a0){
 /*
 	Descrição: Instancia novo polinômio;
 	Entrada: Os 9 coeficientes do polinomio;
 	Saída: O polinômio desejado pelo usuário;
-	Autor: Luiz Eduardo Xavier;
 	Data: 23/09/2014;
 */
 	Polynome r;
@@ -117,6 +170,7 @@ Polynome newPoly(a9,a8,a7,a6,a5,a4,a3,a2,a1,a0){
 	r.a7 = a7;
 	r.a8 = a8;
 	r.a9 = a9;
+	printf("%.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f %.2f",a9,a8,a7,a6,a5,a4,a3,a2,a1,a0);
 	return r;
 }
 
@@ -125,7 +179,6 @@ Polynome getNewPoly(){
 	Descrição: Realiza a leitura de um polinômio;
 	Entrada: void;
 	Saída: O polinômio desejado pelo usuário;
-	Autor: Luiz Eduardo Xavier;
 	Data: 21/09/2014;
 */
 	float coef;
@@ -188,7 +241,6 @@ Polynome diffPoly(Polynome p){
 	Descrição: Deriva um polinômio e printa na tela;
 	Entrada: Um polinômio;
 	Saída: A derivada do polinômio;
-	Autor: Luiz Eduardo Xavier;
 	Data: 23/09/2014;
 */
 	Polynome r;
@@ -202,12 +254,14 @@ Polynome diffPoly(Polynome p){
 	r.a2 = 3*(p.a3);
 	r.a1 = 2*(p.a2);
 	r.a0 = p.a1;
-	printP(r);
 	return r;
 }
 Polynome sumP(Polynome p){
-	printf("Não implementado!\n");
-	return p;
+	printf("Entre com o polinômio a ser somado com o original\n");
+	Polynome q = getNewPoly();
+	q = somaPoly(p,q);
+	printP(q);
+	return q;
 }
 Polynome modPoly(Polynome p){
 	printf("Não implementado!\n");
@@ -220,7 +274,6 @@ void optionMenu(Polynome p){
 	Descrição: Menu de opções para trabalhar com um polinômio;
 	Entrada: O polinômio p que será trabalhado;
 	Saída: ---
-	Autor: Luiz Eduardo Xavier;
 	Data: 20/09/2014;
 */
 	int resp = 0;
